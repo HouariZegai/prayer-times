@@ -17,7 +17,7 @@ public class AdhanService {
   private boolean canPlay = true;
 
   public void setAdhan(String adhanName) {
-    Media media = new Media(new File(FileUtils.RESOURCES_PATH + "adhan\\" + adhanName).toURI().toString());
+    Media media = new Media(new File(FileUtils.RESOURCES_PATH.resolve("adhan").resolve(adhanName).toString()).toURI().toString());
     adhanPlayer = new MediaPlayer(media);
   }
 

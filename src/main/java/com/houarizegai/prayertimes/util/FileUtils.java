@@ -2,6 +2,7 @@ package com.houarizegai.prayertimes.util;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class FileUtils {
 
-  public static final String RESOURCES_PATH = Paths.get("").toAbsolutePath() + "\\src\\main\\resources\\";
+  public static final Path RESOURCES_PATH = Paths.get("").toAbsolutePath().resolve("src").resolve("main").resolve("resources");
 
   public static List<String> getFilesNameFromFolder(String path) {
     File[] listOfFiles = new File(path).listFiles();

@@ -238,7 +238,7 @@ public class PrayerTimesController implements Initializable {
     });
 
     /* Init Adan combobox */
-    List<String> adhanFilesName = FileUtils.getFilesNameFromFolder(FileUtils.RESOURCES_PATH + "adhan");
+    List<String> adhanFilesName = FileUtils.getFilesNameFromFolder(FileUtils.RESOURCES_PATH.resolve("adhan").toString());
     if (adhanFilesName != null && !adhanFilesName.isEmpty())
       comboAdhan.getItems().addAll(Optional.ofNullable(adhanFilesName).get());
 
@@ -302,7 +302,7 @@ public class PrayerTimesController implements Initializable {
     Properties prop = new Properties();
     OutputStream output = null;
     try {
-      output = new FileOutputStream(FileUtils.RESOURCES_PATH + "config\\settings.properties");
+      output = new FileOutputStream(FileUtils.RESOURCES_PATH.resolve("config").resolve("settings.properties").toString());
 
       // Set the properties value
       prop.setProperty("city", String.valueOf(comboCities.getSelectionModel().getSelectedIndex()));
