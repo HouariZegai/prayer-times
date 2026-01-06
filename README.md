@@ -19,7 +19,7 @@ Adhan (Alarm)           |
 ![adhan alarm - screenshoot](screenshoots/v1/adhan_alarm.PNG) |
 
 ## Requirements
-* Java11+
+* Java 21+
 * Maven
 
 ## Installation
