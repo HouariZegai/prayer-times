@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <openjfx.version>18</openjfx.version>
+        <openjfx.version>21.0.2</openjfx.version>
         <jfoenix.version>9.0.10</jfoenix.version>
         <ikonli.version>12.4.0</ikonli.version>
         <unirest-java.version>3.14.5</unirest-java.version>
