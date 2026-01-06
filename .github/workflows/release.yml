@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - 'feat/pipeline'
 
 jobs:
   build-and-release:
@@ -20,9 +22,24 @@ jobs:
           distribution: 'temurin'
           cache: maven
       
-      - name: Get tag name
-        id: tag
-        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      - name: Get tag name or branch
+        id: ref
+        run: |
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            TAG_NAME="${GITHUB_REF#refs/tags/}"
+            echo "IS_TAG=true" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_OUTPUT
+            # Remove 'v' prefix if present
+            VERSION=${TAG_NAME#v}
+            echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+          else
+            BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+            echo "IS_TAG=false" >> $GITHUB_OUTPUT
+            echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+            # Use branch name and commit SHA for version
+            SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+            echo "VERSION=${BRANCH_NAME}-${SHORT_SHA}" >> $GITHUB_OUTPUT
+          fi
       
       - name: Build with Maven
         run: mvn clean package -DskipTests
@@ -31,21 +48,20 @@ jobs:
         id: jar_file
         run: |
           JAR_FILE=$(find target -name "PrayerTimes-*.jar" -not -name "*-javadoc.jar" -not -name "*-sources.jar" | head -n 1)
-          TAG_NAME="${{ steps.tag.outputs.TAG_NAME }}"
-          # Remove 'v' prefix if present
-          VERSION=${TAG_NAME#v}
+          VERSION="${{ steps.ref.outputs.VERSION }}"
           NEW_NAME="PrayerTimes-${VERSION}.jar"
           cp "$JAR_FILE" "target/${NEW_NAME}"
           echo "JAR_PATH=target/${NEW_NAME}" >> $GITHUB_OUTPUT
           echo "JAR_NAME=${NEW_NAME}" >> $GITHUB_OUTPUT
       
-      - name: Create Release
+      - name: Create Release (only on tags)
+        if: steps.ref.outputs.IS_TAG == 'true'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.tag.outputs.TAG_NAME }}
-          name: Release ${{ steps.tag.outputs.TAG_NAME }}
+          tag_name: ${{ steps.ref.outputs.TAG_NAME }}
+          name: Release ${{ steps.ref.outputs.TAG_NAME }}
           body: |
-            ## Release ${{ steps.tag.outputs.TAG_NAME }}
+            ## Release ${{ steps.ref.outputs.TAG_NAME }}
             
             ### Changes
             - See commit history for details
@@ -60,4 +76,12 @@ jobs:
           files: ${{ steps.jar_file.outputs.JAR_PATH }}
           draft: false
           prerelease: false
+      
+      - name: Upload artifact (for testing on branch)
+        if: steps.ref.outputs.IS_TAG == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: PrayerTimes-${{ steps.ref.outputs.VERSION }}
+          path: ${{ steps.jar_file.outputs.JAR_PATH }}
+          retention-days: 7
 
