@@ -46,24 +46,36 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
       
-      - name: Find and rename JAR file
-        id: jar_file
+      - name: Find and prepare distribution file
+        id: dist_file
         run: |
-          JAR_FILE=$(find target -name "PrayerTimes-*.jar" -not -name "*-javadoc.jar" -not -name "*-sources.jar" | head -n 1)
-          if [ -z "$JAR_FILE" ]; then
-            echo "Error: JAR file not found in target directory"
-            ls -la target/
-            exit 1
-          fi
-          if [ ! -f "$JAR_FILE" ]; then
-            echo "Error: JAR file does not exist: $JAR_FILE"
-            exit 1
-          fi
           VERSION="${{ steps.ref.outputs.VERSION }}"
-          NEW_NAME="PrayerTimes-${VERSION}.jar"
-          cp "$JAR_FILE" "target/${NEW_NAME}"
-          echo "JAR_PATH=target/${NEW_NAME}" >> $GITHUB_OUTPUT
-          echo "JAR_NAME=${NEW_NAME}" >> $GITHUB_OUTPUT
+          # Check for jlink zip first (preferred - includes JavaFX runtime)
+          JLINK_ZIP=$(find target -name "PrayerTimes-*.zip" | head -n 1)
+          if [ -n "$JLINK_ZIP" ] && [ -f "$JLINK_ZIP" ]; then
+            NEW_NAME="PrayerTimes-${VERSION}-linux.zip"
+            cp "$JLINK_ZIP" "target/${NEW_NAME}"
+            echo "FILE_PATH=target/${NEW_NAME}" >> $GITHUB_OUTPUT
+            echo "FILE_NAME=${NEW_NAME}" >> $GITHUB_OUTPUT
+            echo "FILE_TYPE=zip" >> $GITHUB_OUTPUT
+          else
+            # Fallback to JAR file
+            JAR_FILE=$(find target -name "PrayerTimes-*.jar" -not -name "*-javadoc.jar" -not -name "*-sources.jar" | head -n 1)
+            if [ -z "$JAR_FILE" ]; then
+              echo "Error: No distribution file found in target directory"
+              ls -la target/
+              exit 1
+            fi
+            if [ ! -f "$JAR_FILE" ]; then
+              echo "Error: JAR file does not exist: $JAR_FILE"
+              exit 1
+            fi
+            NEW_NAME="PrayerTimes-${VERSION}.jar"
+            cp "$JAR_FILE" "target/${NEW_NAME}"
+            echo "FILE_PATH=target/${NEW_NAME}" >> $GITHUB_OUTPUT
+            echo "FILE_NAME=${NEW_NAME}" >> $GITHUB_OUTPUT
+            echo "FILE_TYPE=jar" >> $GITHUB_OUTPUT
+          fi
       
       - name: Create Release (only on tags)
         if: steps.ref.outputs.IS_TAG == 'true'
@@ -78,13 +90,22 @@ jobs:
             - See commit history for details
             
             ### Installation
-            Download the JAR file and run with:
-            ```bash
-            java -jar ${{ steps.jar_file.outputs.JAR_NAME }}
-            ```
             
-            **Note:** Requires Java 21 or higher.
-          files: ${{ steps.jar_file.outputs.JAR_PATH }}
+            Download ${{ steps.dist_file.outputs.FILE_NAME }} and follow the instructions below:
+            
+            **If you downloaded the ZIP file (Linux):**
+            1. Extract the ZIP file
+            2. Navigate to the extracted directory
+            3. Run: `./PrayerTimes`
+            
+            **Note:** The ZIP file includes a custom JavaFX runtime and is built for Linux. For Windows/Mac, please build from source.
+            
+            **If you downloaded the JAR file:**
+            You'll need Java 21+ with JavaFX modules. Run with:
+            ```bash
+            java --module-path <path-to-javafx-lib> --add-modules javafx.controls,javafx.fxml,javafx.media -jar ${{ steps.dist_file.outputs.FILE_NAME }}
+            ```
+          files: ${{ steps.dist_file.outputs.FILE_PATH }}
           draft: false
           prerelease: false
       
@@ -93,6 +114,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: PrayerTimes-${{ steps.ref.outputs.VERSION }}
-          path: ${{ steps.jar_file.outputs.JAR_PATH }}
+          path: ${{ steps.dist_file.outputs.FILE_PATH }}
           retention-days: 7
 

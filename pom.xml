@@ -121,6 +121,19 @@
                 <configuration>
                     <mainClass>com.houarizegai.prayertimes.App</mainClass>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>jlink</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jlink</goal>
+                        </goals>
+                        <configuration>
+                            <launcher>PrayerTimes</launcher>
+                            <jlinkZipName>PrayerTimes-${project.version}</jlinkZipName>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
