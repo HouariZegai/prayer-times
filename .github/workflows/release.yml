@@ -1,0 +1,63 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Get tag name
+        id: tag
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
+      
+      - name: Find and rename JAR file
+        id: jar_file
+        run: |
+          JAR_FILE=$(find target -name "PrayerTimes-*.jar" -not -name "*-javadoc.jar" -not -name "*-sources.jar" | head -n 1)
+          TAG_NAME="${{ steps.tag.outputs.TAG_NAME }}"
+          # Remove 'v' prefix if present
+          VERSION=${TAG_NAME#v}
+          NEW_NAME="PrayerTimes-${VERSION}.jar"
+          cp "$JAR_FILE" "target/${NEW_NAME}"
+          echo "JAR_PATH=target/${NEW_NAME}" >> $GITHUB_OUTPUT
+          echo "JAR_NAME=${NEW_NAME}" >> $GITHUB_OUTPUT
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.tag.outputs.TAG_NAME }}
+          name: Release ${{ steps.tag.outputs.TAG_NAME }}
+          body: |
+            ## Release ${{ steps.tag.outputs.TAG_NAME }}
+            
+            ### Changes
+            - See commit history for details
+            
+            ### Installation
+            Download the JAR file and run with:
+            ```bash
+            java -jar ${{ steps.jar_file.outputs.JAR_NAME }}
+            ```
+            
+            **Note:** Requires Java 21 or higher.
+          files: ${{ steps.jar_file.outputs.JAR_PATH }}
+          draft: false
+          prerelease: false
+
