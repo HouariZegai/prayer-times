@@ -36,9 +36,11 @@ jobs:
             BRANCH_NAME="${GITHUB_REF#refs/heads/}"
             echo "IS_TAG=false" >> $GITHUB_OUTPUT
             echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+            # Sanitize branch name: replace / and other special chars with -
+            SANITIZED_BRANCH=$(echo "${BRANCH_NAME}" | sed 's/[\/_]/-/g' | sed 's/[^a-zA-Z0-9.-]/-/g')
             # Use branch name and commit SHA for version
             SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
-            echo "VERSION=${BRANCH_NAME}-${SHORT_SHA}" >> $GITHUB_OUTPUT
+            echo "VERSION=${SANITIZED_BRANCH}-${SHORT_SHA}" >> $GITHUB_OUTPUT
           fi
       
       - name: Build with Maven
@@ -48,6 +50,15 @@ jobs:
         id: jar_file
         run: |
           JAR_FILE=$(find target -name "PrayerTimes-*.jar" -not -name "*-javadoc.jar" -not -name "*-sources.jar" | head -n 1)
+          if [ -z "$JAR_FILE" ]; then
+            echo "Error: JAR file not found in target directory"
+            ls -la target/
+            exit 1
+          fi
+          if [ ! -f "$JAR_FILE" ]; then
+            echo "Error: JAR file does not exist: $JAR_FILE"
+            exit 1
+          fi
           VERSION="${{ steps.ref.outputs.VERSION }}"
           NEW_NAME="PrayerTimes-${VERSION}.jar"
           cp "$JAR_FILE" "target/${NEW_NAME}"
