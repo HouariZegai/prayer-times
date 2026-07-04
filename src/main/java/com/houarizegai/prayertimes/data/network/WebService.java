@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class WebService {
 
-  private static final String PRAYER_TIMES_END_POINT = "http://api.aladhan.com/v1/timingsByCity";
+  private static final String PRAYER_TIMES_END_POINT = "https://api.aladhan.com/v1/timingsByCity";
   private static final Logger LOG = Logger.getLogger(WebService.class.getName());
 
   public PrayerTimes getPrayerTimes(String city) {
