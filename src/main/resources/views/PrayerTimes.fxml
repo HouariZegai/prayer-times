@@ -35,8 +35,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label styleClass="lbl-title" text="التاريخ:" GridPane.columnIndex="1" />
-                        <Label styleClass="lbl-title" text="الساعة:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lblDateTitle" styleClass="lbl-title" GridPane.columnIndex="1" />
+                        <Label fx:id="lblClockTitle" styleClass="lbl-title" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lblDate" styleClass="lbl-date-time" text="dd/mm/yyyy" />
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.rowIndex="1">
                            <children>
@@ -58,43 +58,44 @@
                                     <Image url="@../images/icon-app-64px.png" />
                                  </image>
                               </ImageView>
-                              <Label styleClass="lbl-prayer-title" text="أوقات الصلاة" />
+                              <Label fx:id="lblAppTitle" styleClass="lbl-prayer-title" />
                            </children>
                         </HBox>
+                        <Label fx:id="lblLoadError" onMouseClicked="#onRetryLoad" styleClass="lbl-load-error" visible="false" />
                         <StackPane prefHeight="45.0" styleClass="box-prayer">
                            <children>
                               <Label fx:id="lblPrayerFajr" styleClass="lbl-prayer-time" text="hh:mm" StackPane.alignment="CENTER_LEFT" />
-                              <Label styleClass="lbl-prayer-name" text="الفجر" StackPane.alignment="CENTER_RIGHT" />
+                              <Label fx:id="lblNameFajr" styleClass="lbl-prayer-name" StackPane.alignment="CENTER_RIGHT" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="45.0" styleClass="box-prayer">
                            <children>
                               <Label fx:id="lblPrayerSunrise" styleClass="lbl-prayer-time" text="hh:mm" StackPane.alignment="CENTER_LEFT" />
-                              <Label styleClass="lbl-prayer-name" text="الشروق" StackPane.alignment="CENTER_RIGHT" />
+                              <Label fx:id="lblNameSunrise" styleClass="lbl-prayer-name" StackPane.alignment="CENTER_RIGHT" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="45.0" styleClass="box-prayer">
                            <children>
                               <Label fx:id="lblPrayerDhuhr" styleClass="lbl-prayer-time" text="hh:mm" StackPane.alignment="CENTER_LEFT" />
-                              <Label styleClass="lbl-prayer-name" text="الظهر" StackPane.alignment="CENTER_RIGHT" />
+                              <Label fx:id="lblNameDhuhr" styleClass="lbl-prayer-name" StackPane.alignment="CENTER_RIGHT" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="45.0" styleClass="box-prayer">
                            <children>
                               <Label fx:id="lblPrayerAsr" styleClass="lbl-prayer-time" text="hh:mm" StackPane.alignment="CENTER_LEFT" />
-                              <Label styleClass="lbl-prayer-name" text="العصر" StackPane.alignment="CENTER_RIGHT" />
+                              <Label fx:id="lblNameAsr" styleClass="lbl-prayer-name" StackPane.alignment="CENTER_RIGHT" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="45.0" styleClass="box-prayer">
                            <children>
                               <Label fx:id="lblPrayerMaghrib" styleClass="lbl-prayer-time" text="hh:mm" StackPane.alignment="CENTER_LEFT" />
-                              <Label styleClass="lbl-prayer-name" text="المغرب" StackPane.alignment="CENTER_RIGHT" />
+                              <Label fx:id="lblNameMaghrib" styleClass="lbl-prayer-name" StackPane.alignment="CENTER_RIGHT" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="45.0" styleClass="box-prayer">
                            <children>
                               <Label fx:id="lblPrayerIsha" styleClass="lbl-prayer-time" text="hh:mm" StackPane.alignment="CENTER_LEFT" />
-                              <Label styleClass="lbl-prayer-name" text="العشاء" StackPane.alignment="CENTER_RIGHT" />
+                              <Label fx:id="lblNameIsha" styleClass="lbl-prayer-name" StackPane.alignment="CENTER_RIGHT" />
                            </children>
                         </StackPane>
                      </children>
@@ -104,11 +105,11 @@
                   <Insets bottom="30.0" top="60.0" />
                </padding>
             </VBox>
-            <VBox fx:id="settingsView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="280.0" prefWidth="310.0" styleClass="settings" visible="false" StackPane.alignment="CENTER">
+            <VBox fx:id="settingsView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="320.0" prefWidth="340.0" styleClass="settings" visible="false" StackPane.alignment="CENTER">
                <children>
                   <StackPane prefHeight="70.0" styleClass="settings-header">
                      <children>
-                        <Label styleClass="settings-header-title" text="الإعدادات" />
+                        <Label fx:id="lblSettingsTitle" styleClass="settings-header-title" />
                         <Label onMouseClicked="#onCloseMenu" styleClass="btn-close" StackPane.alignment="TOP_RIGHT">
                            <StackPane.margin>
                               <Insets right="5.0" top="5.0" />
@@ -127,25 +128,26 @@
                               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
                               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
                            </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints />
-                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Label styleClass="settings-content-txt" text="تشغيل" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <Label styleClass="settings-content-txt" text="المؤذن" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <JFXToggleButton fx:id="tglRunAdhan" graphicTextGap="0.0" nodeOrientation="RIGHT_TO_LEFT" styleClass="settings-content-tgl" text=" " GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <padding>
-                                    <Insets right="-50.0" />
-                                 </padding>
-                              </JFXToggleButton>
-                              <JFXComboBox fx:id="comboAdhan" nodeOrientation="RIGHT_TO_LEFT" promptText="إختر" styleClass="settings-content-combo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <!--<FontAwesomeIconView fx:id="iconPlayAdhan" glyphName="PLAY" size="20" styleClass="settings-content-icon" GridPane.rowIndex="1" />-->
-                              <StackedFontIcon GridPane.rowIndex="1" />
-                              <FontIcon fx:id="iconPlayAdhan" iconColor="#efefef" iconLiteral="icm-play3" iconSize="25" selectionEnd="0" GridPane.rowIndex="2" />
-                              <Label styleClass="settings-content-title" text="الأذان" GridPane.columnIndex="2" />
-                           </children>
+                    <rowConstraints>
+                      <RowConstraints />
+                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                              <Label fx:id="lblAdhanSection" styleClass="settings-content-title" GridPane.columnIndex="2" />
+                              <Label fx:id="lblEnableAdhan" styleClass="settings-content-txt" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Label fx:id="lblAdhanSound" styleClass="settings-content-txt" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Label fx:id="lblMethodLabel" styleClass="settings-content-txt" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label fx:id="lblLanguageLabel" styleClass="settings-content-txt" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                               <JFXToggleButton fx:id="tglRunAdhan" graphicTextGap="0.0" styleClass="settings-content-tgl" text=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXComboBox fx:id="comboAdhan" styleClass="settings-content-combo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <JFXComboBox fx:id="comboMethod" styleClass="settings-content-combo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <JFXComboBox fx:id="comboLanguage" styleClass="settings-content-combo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                               <!--<FontAwesomeIconView fx:id="iconPlayAdhan" glyphName="PLAY" size="20" styleClass="settings-content-icon" GridPane.rowIndex="1" />-->
+                               <FontIcon fx:id="iconPlayAdhan" iconSize="25" styleClass="settings-content-icon" GridPane.rowIndex="2" />
+                            </children>
                            <StackPane.margin>
                               <Insets />
                            </StackPane.margin>
@@ -165,7 +167,7 @@
                      <children>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" spacing="5.0">
                            <children>
-                              <Label styleClass="adhan-title" text="الأذان" />
+                               <Label fx:id="lblAlarmTitle" styleClass="adhan-title" />
                               <!--<EmojiOneView fill="WHITE" glyphName="ALARM_CLOCK" size="35" />-->
                               <StackedFontIcon>
                                  <children>
@@ -176,13 +178,13 @@
                            </children>
                         </HBox>
                         <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="240.0" textAlignment="CENTER">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="adhan-desc" text="حان الأن موعد صلاة " textAlignment="CENTER" wrappingWidth="253.1328125" />
-                              <Text fx:id="txtAlarmPrayer" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -primary-color;" styleClass="adhan-desc" text="العصر" textAlignment="CENTER" wrappingWidth="253.1328125" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="adhan-desc" text="، حسب توقيت " textAlignment="CENTER" wrappingWidth="253.1328125" />
-                              <Text fx:id="txtAlarmCity" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -primary-color;" styleClass="adhan-desc" text="Tiaret" textAlignment="CENTER" wrappingWidth="253.1328125" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="adhan-desc" text=" وضواحيها" textAlignment="CENTER" wrappingWidth="253.1328125" />
-                           </children>
+                            <children>
+                               <Text fx:id="txtAlarmPrefix" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="adhan-desc" textAlignment="CENTER" wrappingWidth="253.1328125" />
+                               <Text fx:id="txtAlarmPrayer" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -primary-color;" styleClass="adhan-desc" textAlignment="CENTER" wrappingWidth="253.1328125" />
+                               <Text fx:id="txtAlarmMiddle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="adhan-desc" textAlignment="CENTER" wrappingWidth="253.1328125" />
+                               <Text fx:id="txtAlarmCity" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -primary-color;" styleClass="adhan-desc" textAlignment="CENTER" wrappingWidth="253.1328125" />
+                               <Text fx:id="txtAlarmSuffix" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="adhan-desc" textAlignment="CENTER" wrappingWidth="253.1328125" />
+                            </children>
                         </TextFlow>
                      </children>
                   </VBox>
@@ -204,10 +206,11 @@
                <StackPane.margin>
                   <Insets left="10.0" />
                </StackPane.margin>
-               <children>
-                  <JFXHamburger fx:id="hamburgerMenu" alignment="CENTER_LEFT" maxWidth="-Infinity" styleClass="hamburger" />
-                  <JFXComboBox fx:id="comboCities" nodeOrientation="RIGHT_TO_LEFT" promptText="ولاية" styleClass="combo-city" />
-               </children>
+                <children>
+                   <JFXHamburger fx:id="hamburgerMenu" alignment="CENTER_LEFT" maxWidth="-Infinity" styleClass="hamburger" />
+                   <JFXComboBox fx:id="comboCountry" styleClass="combo-country" />
+                   <JFXComboBox fx:id="comboCities" styleClass="combo-city" />
+                </children>
             </HBox>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="5.0" StackPane.alignment="CENTER_RIGHT">
                <children>

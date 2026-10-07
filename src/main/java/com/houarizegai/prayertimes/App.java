@@ -1,5 +1,7 @@
 package com.houarizegai.prayertimes;
 
+import com.houarizegai.prayertimes.i18n.I18n;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +22,10 @@ public class App extends Application {
 
   public static Stage stage;
   private static final Logger LOG = Logger.getLogger(App.class.getName());
+
+  private static java.awt.MenuItem openItem;
+  private static java.awt.MenuItem hideItem;
+  private static java.awt.MenuItem exitItem;
 
   @Override
   public void start(Stage stage) {
@@ -75,11 +81,11 @@ public class App extends Application {
 
       // if the user selects the default menu item (which includes the app name),
       // show the main app stage.
-      java.awt.MenuItem openItem = new java.awt.MenuItem("Open");
+      openItem = new java.awt.MenuItem(I18n.t("tray.open"));
       openItem.addActionListener(event -> Platform.runLater(this::showStage));
 
       // hide the main app stage.
-      java.awt.MenuItem hideItem = new java.awt.MenuItem("Hide");
+      hideItem = new java.awt.MenuItem(I18n.t("tray.hide"));
       hideItem.addActionListener(event -> Platform.runLater(this::hideStage));
 
       // the convention for tray icons seems to be to set the default icon for opening
@@ -91,7 +97,7 @@ public class App extends Application {
       // to really exit the application, the user must go to the system tray icon
       // and select the exit option, this will shutdown JavaFX and remove the
       // tray icon (removing the tray icon will also shut down AWT).
-      java.awt.MenuItem exitItem = new java.awt.MenuItem("Exit");
+      exitItem = new java.awt.MenuItem(I18n.t("tray.exit"));
       exitItem.addActionListener(event -> {
         Platform.exit();
         tray.remove(trayIcon);
@@ -111,6 +117,18 @@ public class App extends Application {
       LOG.warning("Unable to init system tray");
       e.printStackTrace();
     }
+  }
+
+  // Re-labels the tray menu after a language change (AWT components must be
+  // touched on the Swing event dispatch thread).
+  public static void refreshTrayLabels() {
+    javax.swing.SwingUtilities.invokeLater(() -> {
+      if (openItem != null) {
+        openItem.setLabel(I18n.t("tray.open"));
+        hideItem.setLabel(I18n.t("tray.hide"));
+        exitItem.setLabel(I18n.t("tray.exit"));
+      }
+    });
   }
 
   private void showStage() {

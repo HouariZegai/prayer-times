@@ -16,22 +16,42 @@ public class AdhanService {
   @Getter
   private boolean canPlay = true;
 
+  // Invoked on the FX thread when playback reaches the end of the media
+  // (used by the settings preview to reset its play/stop icon).
+  @Setter
+  private Runnable onPlaybackFinished;
+
   public void setAdhan(String adhanName) {
+    if (adhanPlayer != null) {
+      adhanPlayer.stop(); // silence any previous preview/alarm before swapping
+    }
     Media media = new Media(new File(FileUtils.RESOURCES_PATH.resolve("adhan").resolve(adhanName).toString()).toURI().toString());
     adhanPlayer = new MediaPlayer(media);
+    adhanPlayer.setOnEndOfMedia(() -> {
+      if (onPlaybackFinished != null) {
+        onPlaybackFinished.run();
+      }
+    });
   }
 
   public void play() {
-    adhanPlayer.play();
+    if (adhanPlayer != null) {
+      if (adhanPlayer.getStatus().equals(MediaPlayer.Status.STOPPED)) {
+        adhanPlayer.seek(adhanPlayer.getStartTime()); // replay from the beginning
+      }
+      adhanPlayer.play();
+    }
   }
 
   public void pause() {
-    adhanPlayer.pause();
-    adhanPlayer.seek(adhanPlayer.getStartTime());
+    if (adhanPlayer != null) {
+      adhanPlayer.pause();
+      adhanPlayer.seek(adhanPlayer.getStartTime());
+    }
   }
 
   public boolean isPlaying() {
-    return adhanPlayer.getStatus().equals(MediaPlayer.Status.PLAYING);
+    return adhanPlayer != null && adhanPlayer.getStatus().equals(MediaPlayer.Status.PLAYING);
   }
 
   public void launchPeriodStop() { // If I stop Adhan don't play it again until the next prayer

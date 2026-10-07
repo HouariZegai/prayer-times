@@ -1,0 +1,184 @@
+{
+  "countries": [
+    {
+      "code": "DZ",
+      "name": { "en": "Algeria", "ar": "الجزائر" },
+      "cities": [
+        { "name": "Adrar", "nameAr": "أدرار", "lat": 27.87, "lng": -0.29 },
+        { "name": "Chlef", "nameAr": "الشلف", "lat": 36.16, "lng": 1.33 },
+        { "name": "Laghouat", "nameAr": "الأغواط", "lat": 33.80, "lng": 2.86 },
+        { "name": "Oum El Bouaghi", "nameAr": "أم البواقي", "lat": 35.87, "lng": 7.11 },
+        { "name": "Batna", "nameAr": "باتنة", "lat": 35.56, "lng": 6.17 },
+        { "name": "Béjaïa", "nameAr": "بجاية", "lat": 36.75, "lng": 5.08 },
+        { "name": "Biskra", "nameAr": "بسكرة", "lat": 34.85, "lng": 5.73 },
+        { "name": "Béchar", "nameAr": "بشار", "lat": 31.62, "lng": -2.22 },
+        { "name": "Blida", "nameAr": "البليدة", "lat": 36.47, "lng": 2.83 },
+        { "name": "Bouira", "nameAr": "البويرة", "lat": 36.37, "lng": 3.90 },
+        { "name": "Tamanghasset", "nameAr": "تمنراست", "lat": 22.79, "lng": 5.53 },
+        { "name": "Tébessa", "nameAr": "تبسة", "lat": 35.40, "lng": 8.12 },
+        { "name": "Tlemcen", "nameAr": "تلمسان", "lat": 34.88, "lng": -1.31 },
+        { "name": "Tiaret", "nameAr": "تيارت", "lat": 35.37, "lng": 1.32 },
+        { "name": "Tizi Ouzou", "nameAr": "تيزي وزو", "lat": 36.71, "lng": 4.05 },
+        { "name": "Algiers", "nameAr": "الجزائر", "lat": 36.75, "lng": 3.06 },
+        { "name": "Djelfa", "nameAr": "الجلفة", "lat": 34.67, "lng": 3.26 },
+        { "name": "Jijel", "nameAr": "جيجل", "lat": 36.82, "lng": 5.77 },
+        { "name": "Sétif", "nameAr": "سطيف", "lat": 36.19, "lng": 5.41 },
+        { "name": "Saïda", "nameAr": "سعيدة", "lat": 34.83, "lng": 0.15 },
+        { "name": "Skikda", "nameAr": "سكيكدة", "lat": 36.87, "lng": 6.91 },
+        { "name": "Sidi Bel Abbès", "nameAr": "سيدي بلعباس", "lat": 35.19, "lng": -0.63 },
+        { "name": "Annaba", "nameAr": "عنابة", "lat": 36.90, "lng": 7.77 },
+        { "name": "Guelma", "nameAr": "قالمة", "lat": 36.46, "lng": 7.43 },
+        { "name": "Constantine", "nameAr": "قسنطينة", "lat": 36.36, "lng": 6.61 },
+        { "name": "Médéa", "nameAr": "المدية", "lat": 36.26, "lng": 2.75 },
+        { "name": "Mostaganem", "nameAr": "مستغانم", "lat": 35.93, "lng": 0.09 },
+        { "name": "M'Sila", "nameAr": "المسيلة", "lat": 35.70, "lng": 4.54 },
+        { "name": "Mascara", "nameAr": "معسكر", "lat": 35.40, "lng": 0.14 },
+        { "name": "Ouargla", "nameAr": "ورقلة", "lat": 31.95, "lng": 5.33 },
+        { "name": "Oran", "nameAr": "وهران", "lat": 35.70, "lng": -0.64 },
+        { "name": "El Bayadh", "nameAr": "البيض", "lat": 33.68, "lng": 1.02 },
+        { "name": "Illizi", "nameAr": "إليزي", "lat": 26.50, "lng": 8.47 },
+        { "name": "Bordj Bou Arreridj", "nameAr": "برج بوعريريج", "lat": 36.07, "lng": 4.76 },
+        { "name": "Boumerdas", "nameAr": "بومرداس", "lat": 36.76, "lng": 3.48 },
+        { "name": "El Tarf", "nameAr": "الطارف", "lat": 36.77, "lng": 8.31 },
+        { "name": "Tinduf", "nameAr": "تندوف", "lat": 27.67, "lng": -8.15 },
+        { "name": "Tissemsilt", "nameAr": "تيسمسيلت", "lat": 35.61, "lng": 1.81 },
+        { "name": "El Oued", "nameAr": "الوادي", "lat": 33.36, "lng": 6.86 },
+        { "name": "Khenchela", "nameAr": "خنشلة", "lat": 35.43, "lng": 6.92 },
+        { "name": "Souk Ahras", "nameAr": "سوق أهراس", "lat": 36.29, "lng": 7.95 },
+        { "name": "Tipasa", "nameAr": "تيبازة", "lat": 36.59, "lng": 2.45 },
+        { "name": "Mila", "nameAr": "ميلة", "lat": 36.45, "lng": 6.26 },
+        { "name": "Aïn Defla", "nameAr": "عين الدفلى", "lat": 36.26, "lng": 1.97 },
+        { "name": "Naâma", "nameAr": "النعامة", "lat": 33.27, "lng": -0.31 },
+        { "name": "Aïn Témouchent", "nameAr": "عين تموشنت", "lat": 35.30, "lng": -1.14 },
+        { "name": "Ghardaïa", "nameAr": "غرداية", "lat": 32.49, "lng": 3.67 },
+        { "name": "Relizane", "nameAr": "غليزان", "lat": 35.74, "lng": 0.55 }
+      ]
+    },
+    {
+      "code": "ID",
+      "name": { "en": "Indonesia", "ar": "إندونيسيا" },
+      "cities": [
+        { "name": "Jakarta", "nameAr": "جاكرتا", "lat": -6.21, "lng": 106.85 },
+        { "name": "Surabaya", "nameAr": "سورابايا", "lat": -7.25, "lng": 112.75 },
+        { "name": "Bandung", "nameAr": "باندونغ", "lat": -6.92, "lng": 107.61 },
+        { "name": "Medan", "nameAr": "ميدان", "lat": 3.59, "lng": 98.67 },
+        { "name": "Semarang", "nameAr": "سمارانغ", "lat": -6.97, "lng": 110.42 },
+        { "name": "Makassar", "nameAr": "ماكاسار", "lat": -5.15, "lng": 119.43 },
+        { "name": "Palembang", "nameAr": "باليمبانغ", "lat": -2.99, "lng": 104.76 },
+        { "name": "Denpasar", "nameAr": "دينباسار", "lat": -8.65, "lng": 115.22 },
+        { "name": "Yogyakarta", "nameAr": "يوجياكرتا", "lat": -7.80, "lng": 110.36 },
+        { "name": "Balikpapan", "nameAr": "باليكبابان", "lat": -1.26, "lng": 116.83 },
+        { "name": "Pekanbaru", "nameAr": "بيكانبارو", "lat": 0.51, "lng": 101.45 },
+        { "name": "Malang", "nameAr": "مالانغ", "lat": -7.98, "lng": 112.63 }
+      ]
+    },
+    {
+      "code": "TR",
+      "name": { "en": "Turkey", "ar": "تركيا" },
+      "cities": [
+        { "name": "Ankara", "nameAr": "أنقرة", "lat": 39.93, "lng": 32.86 },
+        { "name": "Istanbul", "nameAr": "إسطنبول", "lat": 41.01, "lng": 28.98 },
+        { "name": "Izmir", "nameAr": "إزمير", "lat": 38.42, "lng": 27.14 },
+        { "name": "Bursa", "nameAr": "بورصة", "lat": 40.19, "lng": 29.06 },
+        { "name": "Antalya", "nameAr": "أنطاليا", "lat": 36.90, "lng": 30.71 },
+        { "name": "Konya", "nameAr": "قونية", "lat": 37.87, "lng": 32.48 },
+        { "name": "Adana", "nameAr": "أضنة", "lat": 37.00, "lng": 35.32 },
+        { "name": "Gaziantep", "nameAr": "غازي عنتاب", "lat": 37.07, "lng": 37.38 },
+        { "name": "Kayseri", "nameAr": "قيصري", "lat": 38.73, "lng": 35.49 },
+        { "name": "Samsun", "nameAr": "سامسون", "lat": 41.29, "lng": 36.33 },
+        { "name": "Trabzon", "nameAr": "طرابزون", "lat": 41.00, "lng": 39.72 },
+        { "name": "Erzurum", "nameAr": "أرضروم", "lat": 39.90, "lng": 41.28 }
+      ]
+    },
+    {
+      "code": "PK",
+      "name": { "en": "Pakistan", "ar": "باكستان" },
+      "cities": [
+        { "name": "Islamabad", "nameAr": "إسلام آباد", "lat": 33.68, "lng": 73.05 },
+        { "name": "Karachi", "nameAr": "كراتشي", "lat": 24.86, "lng": 67.01 },
+        { "name": "Lahore", "nameAr": "لاهور", "lat": 31.55, "lng": 74.34 },
+        { "name": "Faisalabad", "nameAr": "فيصل آباد", "lat": 31.42, "lng": 73.08 },
+        { "name": "Rawalpindi", "nameAr": "راولبندي", "lat": 33.57, "lng": 73.06 },
+        { "name": "Multan", "nameAr": "ملتان", "lat": 30.16, "lng": 71.48 },
+        { "name": "Peshawar", "nameAr": "بيشاور", "lat": 34.01, "lng": 71.58 },
+        { "name": "Quetta", "nameAr": "كويته", "lat": 30.18, "lng": 66.98 },
+        { "name": "Hyderabad", "nameAr": "حيدر آباد", "lat": 25.39, "lng": 68.37 },
+        { "name": "Gujranwala", "nameAr": "گوجرانوالا", "lat": 32.19, "lng": 74.19 },
+        { "name": "Sialkot", "nameAr": "سيالكوت", "lat": 32.50, "lng": 74.53 },
+        { "name": "Bahawalpur", "nameAr": "بهاولپور", "lat": 29.40, "lng": 71.68 }
+      ]
+    },
+    {
+      "code": "EG",
+      "name": { "en": "Egypt", "ar": "مصر" },
+      "cities": [
+        { "name": "Cairo", "nameAr": "القاهرة", "lat": 30.04, "lng": 31.24 },
+        { "name": "Giza", "nameAr": "الجيزة", "lat": 30.01, "lng": 31.21 },
+        { "name": "Alexandria", "nameAr": "الإسكندرية", "lat": 31.20, "lng": 29.92 },
+        { "name": "Luxor", "nameAr": "الأقصر", "lat": 25.69, "lng": 32.64 },
+        { "name": "Aswan", "nameAr": "أسوان", "lat": 24.09, "lng": 32.90 },
+        { "name": "Tanta", "nameAr": "طنطا", "lat": 30.79, "lng": 30.99 },
+        { "name": "Port Said", "nameAr": "بورسعيد", "lat": 31.26, "lng": 32.30 },
+        { "name": "Suez", "nameAr": "السويس", "lat": 29.97, "lng": 32.55 },
+        { "name": "Mansoura", "nameAr": "المنصورة", "lat": 31.04, "lng": 31.38 },
+        { "name": "Ismailia", "nameAr": "الإسماعيلية", "lat": 30.60, "lng": 32.27 },
+        { "name": "Sharm El Sheikh", "nameAr": "شرم الشيخ", "lat": 27.91, "lng": 34.33 },
+        { "name": "Damanhur", "nameAr": "دمنهور", "lat": 30.47, "lng": 30.47 }
+      ]
+    },
+    {
+      "code": "SA",
+      "name": { "en": "Saudi Arabia", "ar": "السعودية" },
+      "cities": [
+        { "name": "Mecca", "nameAr": "مكة المكرمة", "lat": 21.39, "lng": 39.86 },
+        { "name": "Medina", "nameAr": "المدينة المنورة", "lat": 24.47, "lng": 39.61 },
+        { "name": "Riyadh", "nameAr": "الرياض", "lat": 24.71, "lng": 46.68 },
+        { "name": "Jeddah", "nameAr": "جدة", "lat": 21.49, "lng": 39.19 },
+        { "name": "Dammam", "nameAr": "الدمام", "lat": 26.42, "lng": 50.10 },
+        { "name": "Taif", "nameAr": "الطائف", "lat": 21.27, "lng": 40.42 },
+        { "name": "Buraidah", "nameAr": "بريدة", "lat": 26.33, "lng": 43.98 },
+        { "name": "Al Khobar", "nameAr": "الخبر", "lat": 26.28, "lng": 50.19 },
+        { "name": "Tabuk", "nameAr": "تبوك", "lat": 28.38, "lng": 36.57 },
+        { "name": "Abha", "nameAr": "أبها", "lat": 18.22, "lng": 42.51 },
+        { "name": "Najran", "nameAr": "نجران", "lat": 17.54, "lng": 44.13 },
+        { "name": "Jazan", "nameAr": "جازان", "lat": 16.89, "lng": 42.55 }
+      ]
+    },
+    {
+      "code": "MA",
+      "name": { "en": "Morocco", "ar": "المغرب" },
+      "cities": [
+        { "name": "Casablanca", "nameAr": "الدار البيضاء", "lat": 33.57, "lng": -7.59 },
+        { "name": "Rabat", "nameAr": "الرباط", "lat": 34.02, "lng": -6.83 },
+        { "name": "Fez", "nameAr": "فاس", "lat": 34.03, "lng": -5.00 },
+        { "name": "Marrakesh", "nameAr": "مراكش", "lat": 31.63, "lng": -7.99 },
+        { "name": "Tangier", "nameAr": "طنجة", "lat": 35.76, "lng": -5.83 },
+        { "name": "Agadir", "nameAr": "أكادير", "lat": 30.43, "lng": -9.60 },
+        { "name": "Meknes", "nameAr": "مكناس", "lat": 33.89, "lng": -5.55 },
+        { "name": "Oujda", "nameAr": "وجدة", "lat": 34.68, "lng": -1.91 },
+        { "name": "Kenitra", "nameAr": "القنيطرة", "lat": 34.26, "lng": -6.58 },
+        { "name": "Tetouan", "nameAr": "تطوان", "lat": 35.58, "lng": -5.37 },
+        { "name": "Safi", "nameAr": "آسفي", "lat": 32.30, "lng": -9.24 },
+        { "name": "El Jadida", "nameAr": "الجديدة", "lat": 33.23, "lng": -8.50 }
+      ]
+    },
+    {
+      "code": "MY",
+      "name": { "en": "Malaysia", "ar": "ماليزيا" },
+      "cities": [
+        { "name": "Kuala Lumpur", "nameAr": "كوالالمبور", "lat": 3.14, "lng": 101.69 },
+        { "name": "George Town", "nameAr": "جورج تاون", "lat": 5.41, "lng": 100.34 },
+        { "name": "Johor Bahru", "nameAr": "جوهر بهارو", "lat": 1.49, "lng": 103.74 },
+        { "name": "Ipoh", "nameAr": "إيبوه", "lat": 4.60, "lng": 101.09 },
+        { "name": "Kuching", "nameAr": "كوتشينغ", "lat": 1.55, "lng": 110.35 },
+        { "name": "Kota Kinabalu", "nameAr": "كوتا كينابالو", "lat": 5.98, "lng": 116.07 },
+        { "name": "Seremban", "nameAr": "سرمبان", "lat": 2.73, "lng": 101.94 },
+        { "name": "Shah Alam", "nameAr": "شاه عالم", "lat": 3.07, "lng": 101.52 },
+        { "name": "Melaka", "nameAr": "ملقا", "lat": 2.19, "lng": 102.25 },
+        { "name": "Alor Setar", "nameAr": "ألور ستار", "lat": 6.12, "lng": 100.37 },
+        { "name": "Kota Bharu", "nameAr": "كوتا بهارو", "lat": 6.13, "lng": 102.25 },
+        { "name": "Kuala Terengganu", "nameAr": "كوالا ترينغانو", "lat": 5.33, "lng": 103.14 }
+      ]
+    }
+  ]
+}

@@ -10,6 +10,11 @@
     -fx-font-family: Alameen-Demibold;
 }
 
+/* Latin-script languages use the system font instead of the Arabic font */
+.lang-en, .lang-en * {
+    -fx-font-family: System;
+}
+
 .root {
 	-fx-background-color: -primary-color
 }
@@ -33,9 +38,22 @@ JFXComboBox {
 
 /* Start top part */
 
+.lbl-load-error { /* Shown when prayer times could not be fetched; click retries */
+    -fx-text-fill: -second-color;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER;
+    -fx-cursor: hand;
+}
+
 .hamburger StackPane { /* Menu icon */
     -fx-background-color: #FFF;
     -fx-cursor: hand
+}
+
+.combo-country {
+	-fx-pref-width: 115px;
+	-fx-pref-height: 40px;
+	-fx-font-size: 15px;
 }
 
 .combo-city {
